@@ -1,8 +1,35 @@
-{% extends 'cafeteria/base.html' %}
-{% block title %}Acerca{% endblock %}
-{% block content %}
-<h2>Acerca de la Cafetería</h2>
-<p>Somos una cafetería creada por estudiantes para la comunidad universitaria.</p>
-<p>Integrantes del proyecto: Grupo de Desarrollo Web.</p>
-<img src="/static/images/coffee_shop.jpg" alt="Cafetería" style="max-width:400px;">
-{% endblock %}
+{% load static %}
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Cafetería - Acerca</title>
+		<meta name="description" content="Cafetería Universidad - Acerca de">
+		<meta name="author" content="Cafetería Universidad">
+		<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	</head>
+	<body>
+		<header>
+			<h1 class="brand">☕ Cafetería Universidad</h1>
+			<nav>
+				<a href="{% url 'cafeteria:home' %}">Inicio</a>
+				<a href="{% url 'cafeteria:menu' %}">Menú</a>
+				<a href="{% url 'cafeteria:events' %}">Eventos</a>
+				<a href="{% url 'cafeteria:branches' %}">Sucursales</a>
+				<a href="{% url 'cafeteria:about' %}">Acerca</a>
+				<a href="{% url 'cafeteria:comment' %}">Comentarios</a>
+			</nav>
+		</header>
+		<main>
+			<h2>Acerca de la Cafetería</h2>
+			<p>Somos una cafetería creada por estudiantes para la comunidad universitaria.</p>
+			<p>Integrantes del proyecto: Grupo de Desarrollo Web.</p>
+			<img src="{% static 'images/coffee_shop.jpg' %}" alt="Cafetería" style="max-width:400px;">
+		</main>
+		<footer>
+			<p>&copy; 2025 Cafetería Universidad | Fundamentos de Desarrollo Web</p>
+			<p>Proyecto académico - UANL</p>
+		</footer>
+	</body>
+</html>

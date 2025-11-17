@@ -1,16 +1,14 @@
 from django.core.management.base import BaseCommand
 from django.utils import timezone
-
 from cafeteria.models import Product, Branch, Event, Car, Comment
 
 
 class Command(BaseCommand):
-    help = 'Crea datos de ejemplo para la cafetería (productos, sucursales, eventos, autos, comentarios)'
+    help = 'Crea datos de ejemplo para la cafetería'
 
     def handle(self, *args, **options):
         self.stdout.write('Iniciando creación de datos de ejemplo...')
 
-        # Productos
         products = [
             {'name': 'Café Americano', 'description': 'Café negro tradicional.', 'price': 25.00},
             {'name': 'Latte', 'description': 'Café con leche espumosa.', 'price': 35.00},
@@ -21,7 +19,6 @@ class Command(BaseCommand):
             if created:
                 self.stdout.write(f"Creado producto: {obj.name}")
 
-        # Sucursales
         branches = [
             {'name': 'Campus Central', 'address': 'Av. Universidad 100', 'phone': '55-1234-5678'},
             {'name': 'Sucursal Norte', 'address': 'Av. Norte 200', 'phone': '55-2222-3333'},
@@ -31,7 +28,6 @@ class Command(BaseCommand):
             if created:
                 self.stdout.write(f"Creada sucursal: {obj.name}")
 
-        # Eventos
         now = timezone.now()
         events = [
             {'title': 'Música en vivo', 'date': now + timezone.timedelta(days=7), 'description': 'Noche de música local.'},
@@ -42,7 +38,6 @@ class Command(BaseCommand):
             if created:
                 self.stdout.write(f"Creado evento: {obj.title}")
 
-        # Autos
         cars = [
             {'make': 'Toyota', 'model': 'Yaris', 'plate': 'ABC-1234'},
             {'make': 'Nissan', 'model': 'March', 'plate': 'XYZ-5678'},
@@ -52,7 +47,6 @@ class Command(BaseCommand):
             if created:
                 self.stdout.write(f"Creado auto: {obj}")
 
-        # Comentarios
         comments = [
             {'author': 'Ana', 'email': 'ana@example.com', 'content': 'Me encanta el café de la sucursal central.', 'approved': True},
             {'author': 'Luis', 'email': 'luis@example.com', 'content': 'Muy buen servicio.', 'approved': False},

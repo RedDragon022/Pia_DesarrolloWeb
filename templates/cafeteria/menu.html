@@ -1,16 +1,45 @@
-{% extends 'cafeteria/base.html' %}
-{% block title %}Menú{% endblock %}
-{% block content %}
-<h2>Menú</h2>
-<div class="grid">
-  {% for p in products %}
-    <article class="card">
-      <h4>{{ p.name }}</h4>
-      <p>{{ p.description }}</p>
-      <p class="price">${{ p.price }}</p>
-    </article>
-  {% empty %}
-    <p>No hay productos.</p>
-  {% endfor %}
-</div>
-{% endblock %}
+{% load static %}
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cafetería - Menú</title>
+    <meta name="description" content="Cafetería Universidad - Menú">
+    <meta name="author" content="Cafetería Universidad">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+    <header>
+      <h1 class="brand">☕ Cafetería Universidad</h1>
+      <nav>
+        <a href="{% url 'cafeteria:home' %}">Inicio</a>
+        <a href="{% url 'cafeteria:menu' %}">Menú</a>
+        <a href="{% url 'cafeteria:events' %}">Eventos</a>
+        <a href="{% url 'cafeteria:branches' %}">Sucursales</a>
+        <a href="{% url 'cafeteria:about' %}">Acerca</a>
+        <a href="{% url 'cafeteria:comment' %}">Comentarios</a>
+      </nav>
+    </header>
+    <main>
+      <h2>Menú</h2>
+      {% if products %}
+      <div class="grid">
+        {% for p in products %}
+          <article class="card">
+            <h4>{{ p.name }}</h4>
+            <p>{{ p.description }}</p>
+            <p class="price">${{ p.price }}</p>
+          </article>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p>No hay productos.</p>
+      {% endif %}
+    </main>
+    <footer>
+      <p>&copy; 2025 Cafetería Universidad | Fundamentos de Desarrollo Web</p>
+      <p>Proyecto académico - UANL</p>
+    </footer>
+  </body>
+</html>

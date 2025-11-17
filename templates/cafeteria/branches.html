@@ -1,16 +1,45 @@
-{% extends 'cafeteria/base.html' %}
-{% block title %}Sucursales{% endblock %}
-{% block content %}
-<h2>Nuestras Sucursales</h2>
-<div class="grid">
-  {% for b in branches %}
-    <article class="card">
-      <h4>{{ b.name }}</h4>
-      <p>{{ b.address }}</p>
-      <p>{{ b.phone }}</p>
-    </article>
-  {% empty %}
-    <p>No hay sucursales registradas.</p>
-  {% endfor %}
-</div>
-{% endblock %}
+{% load static %}
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cafetería - Sucursales</title>
+    <meta name="description" content="Cafetería Universidad - Sucursales">
+    <meta name="author" content="Cafetería Universidad">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+    <header>
+      <h1 class="brand">☕ Cafetería Universidad</h1>
+      <nav>
+        <a href="{% url 'cafeteria:home' %}">Inicio</a>
+        <a href="{% url 'cafeteria:menu' %}">Menú</a>
+        <a href="{% url 'cafeteria:events' %}">Eventos</a>
+        <a href="{% url 'cafeteria:branches' %}">Sucursales</a>
+        <a href="{% url 'cafeteria:about' %}">Acerca</a>
+        <a href="{% url 'cafeteria:comment' %}">Comentarios</a>
+      </nav>
+    </header>
+    <main>
+      <h2>Nuestras Sucursales</h2>
+      {% if branches %}
+      <div class="grid">
+        {% for b in branches %}
+          <article class="card">
+            <h4>{{ b.name }}</h4>
+            <p>{{ b.address }}</p>
+            <p>{{ b.phone }}</p>
+          </article>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p>No hay sucursales registradas.</p>
+      {% endif %}
+    </main>
+    <footer>
+      <p>&copy; 2025 Cafetería Universidad | Fundamentos de Desarrollo Web</p>
+      <p>Proyecto académico - UANL</p>
+    </footer>
+  </body>
+</html>
