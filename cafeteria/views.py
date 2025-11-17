@@ -13,12 +13,12 @@ def home(request):
         'page_title': 'Inicio',
         'success_message': success_message,
     }
-    return render(request, 'cafeteria/home.html', context)
+    return render(request, 'cafeteria/inicio.html', context)
 
 
 def about(request):
     context = {'page_title': 'Acerca de Nosotros'}
-    return render(request, 'cafeteria/about.html', context)
+    return render(request, 'cafeteria/acerca.html', context)
 
 
 def menu(request):
@@ -38,7 +38,7 @@ def events(request):
         'page_title': 'Eventos',
         'total_events': all_events.count()
     }
-    return render(request, 'cafeteria/events.html', context)
+    return render(request, 'cafeteria/eventos.html', context)
 
 
 def branches(request):
@@ -48,7 +48,7 @@ def branches(request):
         'page_title': 'Nuestras Sucursales',
         'total_branches': all_branches.count()
     }
-    return render(request, 'cafeteria/branches.html', context)
+    return render(request, 'cafeteria/sucursales.html', context)
 
 
 def comment(request):
@@ -67,4 +67,4 @@ def comment(request):
             return redirect(reverse('cafeteria:home') + '?ok=1')
 
     context = {'page_title': 'Enviar Comentario', 'error': error}
-    return render(request, 'cafeteria/comment.html', context)
+    return render(request, 'cafeteria/comentario.html', context)
