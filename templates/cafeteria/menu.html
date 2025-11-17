@@ -16,7 +16,6 @@
         <a href="{% url 'cafeteria:home' %}">Inicio</a>
         <a href="{% url 'cafeteria:menu' %}">Menú</a>
         <a href="{% url 'cafeteria:events' %}">Eventos</a>
-        <a href="{% url 'cafeteria:branches' %}">Sucursales</a>
         <a href="{% url 'cafeteria:about' %}">Acerca</a>
         <a href="{% url 'cafeteria:comment' %}">Comentarios</a>
       </nav>
@@ -28,6 +27,9 @@
         {% for p in products %}
           <article class="card">
             <h4>{{ p.name }}</h4>
+            {% if p.image %}
+            <img src="{% static 'images/' %}{{ p.image }}" alt="{{ p.name }}" style="max-width:160px;display:block;margin:0 auto 8px;">
+            {% endif %}
             <p>{{ p.description }}</p>
             <p class="price">${{ p.price }}</p>
           </article>

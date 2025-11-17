@@ -16,7 +16,6 @@
         <a href="{% url 'cafeteria:home' %}">Inicio</a>
         <a href="{% url 'cafeteria:menu' %}">Menú</a>
         <a href="{% url 'cafeteria:events' %}">Eventos</a>
-        <a href="{% url 'cafeteria:branches' %}">Sucursales</a>
         <a href="{% url 'cafeteria:about' %}">Acerca</a>
         <a href="{% url 'cafeteria:comment' %}">Comentarios</a>
       </nav>
@@ -32,12 +31,15 @@
 </section>
 
 <section class="products">
-  <h3>Productos Destacados</h3>
+  <h3>Mas Vendidos</h3>
   {% if products %}
   <div class="grid">
     {% for p in products %}
       <article class="card">
         <h4>{{ p.name }}</h4>
+        {% if p.image %}
+        <img src="{% static 'images/' %}{{ p.image }}" alt="{{ p.name }}" style="max-width:140px;display:block;margin:0 auto 8px;">
+        {% endif %}
         <p>{{ p.description }}</p>
         <p class="price">${{ p.price }}</p>
       </article>
@@ -46,9 +48,29 @@
   {% else %}
   <p>No hay productos disponibles en este momento.</p>
   {% endif %}
-  <p style="text-align: center; margin-top: 20px;">
-    <a href="{% url 'cafeteria:menu' %}" class="btn">Ver Menú Completo</a>
-  </p>
+  
+</section>
+
+<section class="branches" style="margin-top:40px;">
+  <h3>Sucursales</h3>
+  {% if branches %}
+  <div class="grid">
+    {% for b in branches %}
+      <article class="card">
+        <h4>{{ b.name }}</h4>
+        <p>{{ b.address }}</p>
+        <p>{{ b.phone }}</p>
+      </article>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p>No hay sucursales registradas.</p>
+  {% endif %}
+</section>
+
+<section class="about" style="margin-top:40px;">
+  <h3>Acerca</h3>
+  <p>Somos una cafetería universitaria enfocada en ofrecer café y comida sencilla.</p>
 </section>
 
 <section class="comment-cta" style="text-align: center; margin-top: 40px;">

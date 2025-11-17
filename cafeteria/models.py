@@ -5,6 +5,12 @@ class Product(models.Model):
     name = models.CharField(max_length=200, verbose_name="Nombre del Producto")
     description = models.TextField(blank=True, verbose_name="Descripción")
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name="Precio")
+    image = models.CharField(
+        max_length=200,
+        blank=True,
+        verbose_name="Archivo de Imagen",
+        help_text="Nombre del archivo en static/images (ej: latte.webp)"
+    )
 
     def __str__(self):
         return self.name

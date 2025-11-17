@@ -4,8 +4,8 @@ from .models import Product, Event, Branch, Comment
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price')
-    search_fields = ('name',)
+    list_display = ('name', 'price', 'image')
+    search_fields = ('name', 'image')
 
 
 @admin.register(Event)

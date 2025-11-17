@@ -4,31 +4,33 @@ from .models import Product, Event, Branch, Comment
 
 
 def home(request):
-    latest_products = Product.objects.all()[:3]
+    # Ahora muestra todos los productos y un bloque simple de sucursales y acerca
+    products = Product.objects.all()
+    branches = Branch.objects.all()
     success_message = ''
     if request.GET.get('ok') == '1':
         success_message = '¡Gracias por tu comentario! Será revisado pronto.'
     context = {
-        'products': latest_products,
+        'products': products,
+        'branches': branches,
         'page_title': 'Inicio',
         'success_message': success_message,
     }
     return render(request, 'cafeteria/inicio.html', context)
 
 
-def about(request):
-    context = {'page_title': 'Acerca de Nosotros'}
-    return render(request, 'cafeteria/acerca.html', context)
-
-
 def menu(request):
     products = Product.objects.all()
     context = {
         'products': products,
-        'page_title': 'Menú Completo',
-        'total_products': products.count()
+        'page_title': 'Menú'
     }
     return render(request, 'cafeteria/menu.html', context)
+
+
+def about(request):
+    context = {'page_title': 'Acerca'}
+    return render(request, 'cafeteria/acerca.html', context)
 
 
 def events(request):
@@ -39,16 +41,6 @@ def events(request):
         'total_events': all_events.count()
     }
     return render(request, 'cafeteria/eventos.html', context)
-
-
-def branches(request):
-    all_branches = Branch.objects.all()
-    context = {
-        'branches': all_branches,
-        'page_title': 'Nuestras Sucursales',
-        'total_branches': all_branches.count()
-    }
-    return render(request, 'cafeteria/sucursales.html', context)
 
 
 def comment(request):
