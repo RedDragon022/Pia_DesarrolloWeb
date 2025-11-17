@@ -1,83 +1,80 @@
-{% load static %}
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cafetería - Inicio</title>
-    <meta name="description" content="Cafetería Universidad - Los mejores cafés y alimentos">
-    <meta name="author" content="Cafetería Universidad">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="/static/css/style.css">
   </head>
   <body>
     <header>
       <h1 class="brand">☕ Cafetería Universidad</h1>
       <nav>
-        <a href="{% url 'cafeteria:home' %}">Inicio</a>
-        <a href="{% url 'cafeteria:menu' %}">Menú</a>
-        <a href="{% url 'cafeteria:events' %}">Eventos</a>
-        <a href="{% url 'cafeteria:about' %}">Acerca</a>
-        <a href="{% url 'cafeteria:comment' %}">Comentarios</a>
+        <a href="/">Inicio</a>
+        <a href="/menu/">Menú</a>
+        <a href="/events/">Eventos</a>
+        <a href="/about/">Acerca</a>
+        <a href="/comment/">Comentarios</a>
       </nav>
     </header>
     <main>
 {% if success_message %}
 <p style="background:#d4edda;border-left:4px solid #28a745;color:#155724;padding:12px;border-radius:4px;">{{ success_message }}</p>
 {% endif %}
-<section class="hero">
+<div class="hero">
   <h2>Bienvenido a nuestra Cafetería ☕</h2>
   <p>Disfruta de los mejores cafés, pasteles y eventos especiales.</p>
   <p>¡Tu lugar favorito en el campus!</p>
-</section>
+ </div>
 
-<section class="products">
-  <h3>Mas Vendidos</h3>
+<div class="products">
+  <h3>Más Vendidos</h3>
   {% if products %}
   <div class="grid">
     {% for p in products %}
-      <article class="card">
+      <div class="card">
         <h4>{{ p.name }}</h4>
         {% if p.image %}
-        <img src="{% static 'images/' %}{{ p.image }}" alt="{{ p.name }}" style="max-width:140px;display:block;margin:0 auto 8px;">
+        <img src="/static/{{ p.image }}" alt="{{ p.name }}">
         {% endif %}
         <p>{{ p.description }}</p>
         <p class="price">${{ p.price }}</p>
-      </article>
+      </div>
     {% endfor %}
   </div>
   {% else %}
   <p>No hay productos disponibles en este momento.</p>
   {% endif %}
   
-</section>
+ </div>
 
-<section class="branches" style="margin-top:40px;">
+<div class="branches" style="margin-top:40px;">
   <h3>Sucursales</h3>
   {% if branches %}
   <div class="grid">
     {% for b in branches %}
-      <article class="card">
+      <div class="card">
         <h4>{{ b.name }}</h4>
         <p>{{ b.address }}</p>
         <p>{{ b.phone }}</p>
-      </article>
+      </div>
     {% endfor %}
   </div>
   {% else %}
   <p>No hay sucursales registradas.</p>
   {% endif %}
-</section>
+ </div>
 
-<section class="about" style="margin-top:40px;">
+<div class="about" style="margin-top:40px;">
   <h3>Acerca</h3>
   <p>Somos una cafetería universitaria enfocada en ofrecer café y comida sencilla.</p>
-</section>
+ </div>
 
-<section class="comment-cta" style="text-align: center; margin-top: 40px;">
+<div class="comment-cta" style="text-align: center; margin-top: 40px;">
   <h3>¿Qué te pareció tu experiencia?</h3>
   <p>Nos encantaría conocer tu opinión</p>
   <a href="{% url 'cafeteria:comment' %}" class="btn">Escribir Comentario</a>
-</section>
+ </div>
     </main>
     <footer>
       <p>&copy; 2025 Cafetería Universidad | Fundamentos de Desarrollo Web</p>

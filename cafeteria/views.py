@@ -4,15 +4,13 @@ from .models import Product, Event, Branch, Comment
 
 
 def home(request):
-    # Ahora muestra todos los productos y un bloque simple de sucursales y acerca
-    products = Product.objects.all()
-    branches = Branch.objects.all()
+    # Versión sencilla: mostrar solo 3 productos destacados
+    products = Product.objects.all()[:3]
     success_message = ''
     if request.GET.get('ok') == '1':
         success_message = '¡Gracias por tu comentario! Será revisado pronto.'
     context = {
         'products': products,
-        'branches': branches,
         'page_title': 'Inicio',
         'success_message': success_message,
     }

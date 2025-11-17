@@ -167,3 +167,10 @@ footer {
 footer p {
     margin: 5px 0;
 }
+
+/* Imagenes de productos en tarjetas */
+.card img {
+    max-width: 140px;
+    display: block;
+    margin: 0 auto 8px;
+}

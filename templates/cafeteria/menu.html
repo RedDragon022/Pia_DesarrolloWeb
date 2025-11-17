@@ -1,23 +1,20 @@
-{% load static %}
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cafetería - Menú</title>
-    <meta name="description" content="Cafetería Universidad - Menú">
-    <meta name="author" content="Cafetería Universidad">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="/static/css/style.css">
   </head>
   <body>
     <header>
       <h1 class="brand">☕ Cafetería Universidad</h1>
       <nav>
-        <a href="{% url 'cafeteria:home' %}">Inicio</a>
-        <a href="{% url 'cafeteria:menu' %}">Menú</a>
-        <a href="{% url 'cafeteria:events' %}">Eventos</a>
-        <a href="{% url 'cafeteria:about' %}">Acerca</a>
-        <a href="{% url 'cafeteria:comment' %}">Comentarios</a>
+        <a href="/">Inicio</a>
+        <a href="/menu/">Menú</a>
+        <a href="/events/">Eventos</a>
+        <a href="/about/">Acerca</a>
+        <a href="/comment/">Comentarios</a>
       </nav>
     </header>
     <main>
@@ -25,14 +22,14 @@
       {% if products %}
       <div class="grid">
         {% for p in products %}
-          <article class="card">
+          <div class="card">
             <h4>{{ p.name }}</h4>
             {% if p.image %}
-            <img src="{% static 'images/' %}{{ p.image }}" alt="{{ p.name }}" style="max-width:160px;display:block;margin:0 auto 8px;">
+            <img src="/static/{{ p.image }}" alt="{{ p.name }}">
             {% endif %}
             <p>{{ p.description }}</p>
             <p class="price">${{ p.price }}</p>
-          </article>
+          </div>
         {% endfor %}
       </div>
       {% else %}

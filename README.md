@@ -28,19 +28,19 @@ python manage.py runserver
 ## Para cambiar el contenido
 - Texto/HTML: edita la plantilla correspondiente.
 - Navegación: actualizar el bloque `<nav>` en cada plantilla (se repite en 5 archivos para simplicidad).
-- Inicio: muestra productos (menú resumido), sucursales y bloque acerca breve.
+- Inicio: muestra 3 productos destacados y un botón para ir al Menú.
 - Menú: listado completo de productos con imágenes.
 - Acerca: información institucional y una imagen decorativa.
 - Eventos: editar datos en admin o directamente en modelo `Event`.
 - Comentarios: formulario en `comentario.html` y creación en vista `comment`.
 - Mensaje de éxito comentario: lógica en `views.py` función `comment` y lectura del parámetro `?ok=1` en `home`.
-- Imágenes de productos: en el admin (modelo Product) llenar el campo "Archivo de Imagen" SOLO con el nombre (ej: `latte.webp`). La plantilla construye la ruta.
+- Imágenes de productos: en el admin (modelo Product) llenar el campo "Archivo de Imagen" con la ruta relativa incluyendo la carpeta, por ejemplo: `images/latte.webp`. En las plantillas se usa `{% static p.image %}`.
 
 ## Añadir un nuevo campo a un modelo
 1. Agrega el campo en `models.py`.
 2. Ejecuta migraciones (ver arriba).
 3. Si quieres mostrarlo en una plantilla, agrega `{{ objeto.campo }}` donde necesites.
- 4. Para imágenes estáticas: en este proyecto el campo `image` guarda solo el nombre (ej: `latte.webp`). La plantilla construye la ruta con `{% static 'images/' %}{{ p.image }}`.
+ 4. Para imágenes estáticas: el campo `image` guarda `images/<archivo>` (ej: `images/latte.webp`). En las plantillas se referencia con `{% static p.image %}`.
 
 ## CSS
 Modificar `static/css/style.css`. Cambios reflejan al recargar la página.
